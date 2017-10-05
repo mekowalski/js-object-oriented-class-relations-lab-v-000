@@ -9,14 +9,10 @@ class Driver {
     store.drivers.push(this)
   }
   trips() {
-    return store.trips.filter(function(trip) {
-      return trip.driverId === this.id
-    })
+    return store.trips.filter(trip => trip.driverId === this.id)
   }
   passengers() {
-    return this.trips().map(function(trip) {
-      return trip.passenger()
-    })
+    return this.trips().map(trip => trip.passenger())
   }
 }
 
@@ -29,14 +25,10 @@ class Passenger {
     store.passengers.push(this)
   }
   trips() {
-    return store.trips.filter(function(trip) {
-      return trip.passengerId === this.id
-    })
+    return store.trips.filter(trip => trip.passengerId === this.id)
   }
   drivers() {
-    return this.trips().map(function(trip) {
-      return trip.driver()
-    })
+    return this.trips().map(trip => trip.driver())
   }
 }
 
@@ -45,22 +37,18 @@ class Trip {
   constructor(driver, passenger) {
     this.id = ++tripId
     if (driver) {
-      this.driverId = driver.id
+      this.driverId = driverId
     }
     if (passenger) {
-      this.passengerId = passenger.id
+      this.passengerId = passengerId
     }
 
     store.trips.push(this)
   }
   driver() {
-    return store.drivers.find(function(driver) {
-      return driver.id === this.driverId
-    })
+    return store.drivers.find(driver => driver.id === this.driverId)
   }
   passenger() {
-    return store.passengers.find(function(driver) {
-      return passenger.id === this.passengerId
-    })
+    return store.passengers.find(passenger => passenger.id === this.passengerId)
   }
 }
